@@ -22,7 +22,7 @@ public class JournalEntryControllerV2 {
     @Autowired
     private UserEntryService userentryservice;
 
-    @GetMapping("{username}")
+    @GetMapping("/{username}")
     public ResponseEntity<?> getAlljournalentryforusers(@PathVariable String username) {
 
         User user = userentryservice.findByUsername(username);
@@ -35,7 +35,7 @@ public class JournalEntryControllerV2 {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("{username}")
+    @PostMapping("/{username}")
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myentry, @PathVariable String username) {
 
         try{
@@ -49,7 +49,7 @@ public class JournalEntryControllerV2 {
         }
     }
 
-    @GetMapping("id/{myId}")
+    @GetMapping("/id/{myId}")
     public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable ObjectId myId){
 
         Optional<JournalEntry> journalEntry = Optional.ofNullable(journalentryservice.findById(myId));
@@ -61,7 +61,7 @@ public class JournalEntryControllerV2 {
         return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("id/{username}/{myId}")
+    @DeleteMapping("/   id/{username}/{myId}")
     public ResponseEntity<?> deleteJournalEntryById(@PathVariable ObjectId myId,@PathVariable String username){
 
         journalentryservice.deleteByID(myId,username);
